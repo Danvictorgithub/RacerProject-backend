@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import logger from "morgan";
+import routes from "./routes/routes";
 dotenv.config();
 const app:Express = express();
 
@@ -14,9 +15,7 @@ app.use(cors());
 app.use(express.json());
 app.use(urlencoded({extended:true}));
 
-app.use("/", (req:Request, res:Response) => {
-    res.json({message:"Hello World"});
-});
+app.use("/api",routes);
 
 app.listen(port, () => {
     console.log(`Listening to port ${port}`);
